@@ -19,6 +19,14 @@ type Server struct {
 	IsAsync   bool                //同步还是异步操作 true异步、false同步
 }
 
+/**
+*	创建服务对象
+*	@param:inQueue 放入内容的队列、任意类型
+*	@param:delay 延迟时间 多长时间之后、不管是否达到指定条数、都调用处理函数业务
+*	@param:size 队列内内容大小 到达指定条目后、调用处理函数业务
+*	@param:isAsync 是否为异步处理 true 异步处理 false 非异步处理
+*	@param:operation  IFaceBatchOperation  操作句柄、到具体业务的时候为具体实现类对象
+ */
 func NewServer(inQueue chan interface{}, delay time.Duration, size int, isAsync bool, operation IFaceBatchOperation) (s *Server, e error) {
 	if inQueue == nil {
 		return nil, errors.New("inQueue nil")
